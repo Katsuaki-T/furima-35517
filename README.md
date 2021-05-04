@@ -38,7 +38,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase_history
+- has_many :purchase_histories
 
 
 ## purchase_histories テーブル
