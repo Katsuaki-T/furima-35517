@@ -42,5 +42,14 @@ RSpec.describe User, type: :model do
       @user.password_confirmation = '1a1a1a'
       expect(@user).to be_valid
     end
+
+    it "passwordが存在してもencrypted_passwordがない場合は登録できないこと" do
+      @user.password = '1a1a1a'
+      @user.password_confirmation = '1a1a1'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+
+
   end
 end
