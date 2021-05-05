@@ -25,10 +25,14 @@ RSpec.describe User, type: :model do
     end
 
     it 'パスワードが必須であること' do
-      
+      @user.password = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password can't be blank")
+
     end
     
     it 'パスワードは、6文字以上での入力が必須であること' do
+      
     end
 
     it 'パスワードとパスワード（確認用）、値の一致が必須であること' do
