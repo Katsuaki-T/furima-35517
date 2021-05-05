@@ -2,8 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
+    before do
+      @user = FactoryBot.build(:user)
+    end
     it 'メールアドレスが必須であること' do
-
+      @user.email = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email can't be blank")
     end
 
     it 'メールアドレスが一意性であること' do
