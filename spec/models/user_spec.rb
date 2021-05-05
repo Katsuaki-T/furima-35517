@@ -20,9 +20,12 @@ RSpec.describe User, type: :model do
     end
 
     it 'メールアドレスは、@を含む必要があること' do
+      @user.email = "a@a"
+      expect(@user).to be_valid
     end
 
     it 'パスワードが必須であること' do
+      
     end
     
     it 'パスワードは、6文字以上での入力が必須であること' do
