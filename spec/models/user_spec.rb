@@ -39,6 +39,9 @@ RSpec.describe User, type: :model do
     end
 
     it 'パスワードとパスワード（確認用）、値の一致が必須であること' do
+      @user.password = "1a1a1a"
+      @user.password_confirmation = "1a1a1a"
+      expect(@user).to be_valid
     end
     
   end
