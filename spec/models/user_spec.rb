@@ -32,7 +32,10 @@ RSpec.describe User, type: :model do
     end
     
     it 'パスワードは、6文字以上での入力が必須であること' do
-      
+      @user.password = "1a1a1"
+      @user.password_confirmation = "1a1a1"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
     end
 
     it 'パスワードとパスワード（確認用）、値の一致が必須であること' do
