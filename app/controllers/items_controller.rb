@@ -27,7 +27,7 @@ def item_params
     :category_id,:status_id,
     :shipping_charge_id,
     :prefecture_id,
-    :delivery_time_id,:price
+    :delivery_time_id,:price,:image
   ).merge(user_id: current_user.id)
 end
 
