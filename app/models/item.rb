@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :delivery_time_id
   end
 
-
-
+  belongs_to :user
+  has_one_attached :image
     
 end

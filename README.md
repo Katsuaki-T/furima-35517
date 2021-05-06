@@ -39,7 +39,7 @@
 
 - belongs_to :user
 - has_one :purchase_history
-
+  has_one_attached :image  
 
 ## purchase_histories テーブル
 
