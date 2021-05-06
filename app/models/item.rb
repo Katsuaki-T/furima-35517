@@ -4,7 +4,7 @@ class Item < ApplicationRecord
       validates :name
       validates :description
       validates :image
-      validates :price, format: { with: /^[0-9]+$/ }, inclusion: { in: 300..9_999_999 }
+      validates :price, format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9_999_999 }
     end
 
 
@@ -25,5 +25,5 @@ class Item < ApplicationRecord
   belongs_to :shipping_charge
   belongs_to :prefecture
   belongs_to :delivery_time
-  
+
 end
