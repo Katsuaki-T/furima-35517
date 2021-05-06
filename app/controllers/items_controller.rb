@@ -22,7 +22,7 @@ end
 
 private
 def item_params
-  item.require(:item).permit(
+  params.require(:item).permit(
     :name,:description,
     :category_id,:status_id,
     :shipping_charge_id,
@@ -33,6 +33,6 @@ end
 
 def move_to_index
   unless user_signed_in?
-    redirect_to action: :index
+    redirect_to new_user_session_path
   end
 end
