@@ -31,7 +31,7 @@
 | prefecture_id      | integer    | null: false                   |
 | delivery_time_id   | integer    | null: false                   |
 | price              | integer    | null: false                   |
-| user               | references | null: false, foreign_key:true |
+| user               | references | foreign_key:true |
 
 出品画像(image)に関しては Active Storageで編集します
 
@@ -45,8 +45,8 @@
 
 | Column  | Type       | Options                       |
 | ------- | ---------- | ----------------------------- |
-| user    | references | null: false, foreign_key:true |
-| item    | references | null: false, foreign_key:true |
+| user    | references |  foreign_key:true |
+| item    | references |  foreign_key:true |
 
 ### Association
 
@@ -65,7 +65,7 @@
 | house_number         | string     | null: false                    |
 | building_name        | string     | 不要                            |
 | phone_number         | string     | null: false                    |
-| purchase_history     | references | null: false, foreign_key: true |
+| purchase_history     | references | foreign_key: true |
 
 ### Association
 
