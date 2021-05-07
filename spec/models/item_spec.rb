@@ -33,31 +33,31 @@ context '内容に問題がある場合' do
   end
 
   it 'カテゴリーが最初の状態だと登録できない' do
-    @item.category_id = '1'
+    @item.category_id =  1
     @item.valid?
     expect(@item.errors.full_messages).to include("Category must be other than 1")
   end
 
   it '商品の状態が最初の状態だと登録できない' do
-    @item.status_id = '1'
+    @item.status_id =  1
     @item.valid?
     expect(@item.errors.full_messages).to include("Status must be other than 1")
   end
 
   it '配送料が最初の状態だと登録できない' do
-    @item.shipping_charge_id = '1'
+    @item.shipping_charge_id =  1
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
   end
 
   it '都道府県が最初の状態だと登録できない' do
-    @item.prefecture_id = '1'
+    @item.prefecture_id =  1
     @item.valid?
     expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
   end
 
   it '発送日数が最初の状態だと登録できない' do
-    @item.delivery_time_id = '1'
+    @item.delivery_time_id =  1
     @item.valid?
     expect(@item.errors.full_messages).to include("Delivery time must be other than 1")
   end
@@ -69,13 +69,31 @@ context '内容に問題がある場合' do
   end
 
   it '値段が¥300~¥9,999,999の間のみ保存可能' do
-    @item.price = '200'
+    @item.price = 200
     @item.valid?
     expect(@item.errors.full_messages).to include("Price is not included in the list")
   end
 
   it '値段は半角数字のみ保存可能' do
     @item.price = '３００'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price is not included in the list")
+  end
+
+  it '値段は10,000,000以上では登録できないこと' do
+    @item.price = '10_000_000'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price is not included in the list")
+  end
+
+  it '値段は半角英数混合では登録できないこと' do
+    @item.price = "3oo"
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price is not included in the list")
+  end
+
+  it '値段は半角英語だけでは登録できないこと' do
+    @item.price = "ooo"
     @item.valid?
     expect(@item.errors.full_messages).to include("Price is not included in the list")
   end
