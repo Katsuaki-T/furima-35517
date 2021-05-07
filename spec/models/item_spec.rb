@@ -81,7 +81,7 @@ context '内容に問題がある場合' do
   end
 
   it '値段は10,000,000以上では登録できないこと' do
-    @item.price = '10_000_000'
+    @item.price = 10_000_000
     @item.valid?
     expect(@item.errors.full_messages).to include("Price is not included in the list")
   end
