@@ -20,6 +20,17 @@ context '内容に問題がある場合' do
     expect(@item.errors.full_messages).to include("Image can't be blank")
   end
 
+  it '商品名がないと登録できない' do
+    @item.name = ''
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Name can't be blank")
+  end
+
+  it '商品の説明がないと登録できない' do
+    @item.description = ''
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Description can't be blank")
+  end
 
 
 end 
