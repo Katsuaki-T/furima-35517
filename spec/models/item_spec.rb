@@ -62,8 +62,24 @@ context '内容に問題がある場合' do
     expect(@item.errors.full_messages).to include("Delivery time must be other than 1")
   end
 
+  it '値段がないと登録できない' do
+    @item.price = ''
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price can't be blank")
+  end
 
-  
+  it '値段が¥300~¥9,999,999の間のみ保存可能' do
+    @item.price = '200'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price is not included in the list")
+  end
+
+  it '値段は半角数字のみ保存可能' do
+    @item.price = '３００'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price is not included in the list")
+  end
+
 end 
 
 
