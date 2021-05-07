@@ -14,6 +14,14 @@ end
 
 context '内容に問題がある場合' do
 
+  it '画像がないと登録できない' do
+    @item.image = nil
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Image can't be blank")
+  end
+
+
+
 end 
 
 
