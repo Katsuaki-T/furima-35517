@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index ]
 
-  def index
-    @items = Item.includes(:uer)
-  end
+  # def index
+  #   @items = Item.includes(:uer)
+  # end
 
   def new
     @item = Item.new
