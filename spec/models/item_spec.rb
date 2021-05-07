@@ -32,7 +32,38 @@ context '内容に問題がある場合' do
     expect(@item.errors.full_messages).to include("Description can't be blank")
   end
 
+  it 'カテゴリーが最初の状態だと登録できない' do
+    @item.category_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Category must be other than 1")
+  end
 
+  it '商品の状態が最初の状態だと登録できない' do
+    @item.status_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Status must be other than 1")
+  end
+
+  it '配送料が最初の状態だと登録できない' do
+    @item.shipping_charge_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
+  end
+
+  it '都道府県が最初の状態だと登録できない' do
+    @item.prefecture_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+  end
+
+  it '発送日数が最初の状態だと登録できない' do
+    @item.delivery_time_id = '1'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Delivery time must be other than 1")
+  end
+
+
+  
 end 
 
 
