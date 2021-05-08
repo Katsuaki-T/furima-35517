@@ -21,15 +21,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-   
   end
 
   def edit
-   
   end
 
   def update
-    
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
@@ -54,8 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless current_user.id == @item.user_id
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless current_user.id == @item.user_id
   end
 end
