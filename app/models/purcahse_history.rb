@@ -1,0 +1,2 @@
+class PurcahseHistory < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class SendingAddress < ApplicationRecord
+end
