@@ -18,8 +18,8 @@ class PurchaseHistoriesController < ApplicationController
  private
 
   def purchase_history_params
-    params.require(:purchase_address).permit(:postal_code, :prefecture_id
-      ,:city, :house_number, :building_name, :phone_number).merge(user_id: current_user)
+    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :city, 
+      :house_number, :building_name, :phone_number).merge(user_id: current_user.id)
   end
 
 
