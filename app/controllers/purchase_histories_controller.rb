@@ -30,7 +30,7 @@ class PurchaseHistoriesController < ApplicationController
   def payjp_item
     Payjp.api_key = "sk_test_adcde59a6fa7e490dfec3b85"  
       Payjp::Charge.create(
-        amount: purchase_history_params[:price],  # 商品の値段
+        amount: @item.price,  # 商品の値段
         card: purchase_history_params[:token],    # カードトークン
         currency: 'jpy'                 # 通貨の種類（日本円）
       )
