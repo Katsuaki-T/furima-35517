@@ -13,3 +13,4 @@ Rails.start()
 ActiveStorage.start()
 
 require("../new");
+require("../card");
