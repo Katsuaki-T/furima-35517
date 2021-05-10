@@ -35,11 +35,11 @@
       <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
       <% end %>
    <% else %>
-      <%# /商品購入の実装後、要リンク  %>
+      
        <% if @item.purchase_history.blank? %> 
       <%= link_to "購入画面に進む", item_purchase_histories_path(@item.id) ,class:"item-red-btn"%>
        <% end %>
-      <%# //商品購入の実装後、要リンク %>
+      
    <% end %>
 <% end %>
 

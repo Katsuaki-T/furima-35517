@@ -1,9 +1,15 @@
 class PurchaseHistoriesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @purchase_address = PurchaseAddress.new
     @item = Item.find(params[:item_id])
 
+    if current_user == @item.user || @item.purchase_history != nil
+      redirect_to root_path
+   end
+    @purchase_address = PurchaseAddress.new
+    
+    
   end
 
   def create
@@ -35,5 +41,8 @@ class PurchaseHistoriesController < ApplicationController
         currency: 'jpy'                 # 通貨の種類（日本円）
       )
   end
+
+  
+
 
 end
