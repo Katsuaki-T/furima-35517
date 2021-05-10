@@ -25,6 +25,14 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Postal code is invalid')
       end
+
+      it 'prefectureを選択していないと保存できないこと' do
+        @purchase_address.prefecture_id = 1
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Prefecture must be other than 1")
+      end
+
+      
     end
   end
 end
