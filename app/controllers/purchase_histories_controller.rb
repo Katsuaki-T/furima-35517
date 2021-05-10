@@ -11,6 +11,7 @@ class PurchaseHistoriesController < ApplicationController
     @item = Item.find(params[:item_id])
 
     if @purchase_address.valid?
+      payjp_item
       @purchase_address.save
       redirect_to root_path
     else
@@ -26,5 +27,13 @@ class PurchaseHistoriesController < ApplicationController
       :house_number, :building_name, :phone_number).merge(user_id: current_user.id,item_id: params[:item_id], token: params[:token])
   end
 
+  def payjp_item
+    Payjp.api_key = "sk_test_adcde59a6fa7e490dfec3b85"  
+      Payjp::Charge.create(
+        amount: purchase_history_params[:price],  # 商品の値段
+        card: purchase_history_params[:token],    # カードトークン
+        currency: 'jpy'                 # 通貨の種類（日本円）
+      )
+  end
 
 end
