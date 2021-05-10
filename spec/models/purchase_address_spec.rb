@@ -44,6 +44,31 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("House number can't be blank")
       end
 
+      it 'phone_numberが空だと保存できないこと' do
+        @purchase_address.phone_number = ''
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank")
+      end
+
+      it 'phone_numberが10字以下だと保存できないこと' do
+        @purchase_address.phone_number = '1234567890'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'phone_numberが半角英字だと保存できないこと' do
+        @purchase_address.phone_number = 'lllllllllll'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'phone_numberが全角数字だと保存できないこと' do
+        @purchase_address.phone_number = '１１１１１１１１１１１'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+
     end
   end
 end
