@@ -4,12 +4,8 @@ class PurchaseHistoriesController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
 
-    if current_user == @item.user || @item.purchase_history != nil
-      redirect_to root_path
-   end
+    redirect_to root_path if current_user == @item.user || !@item.purchase_history.nil?
     @purchase_address = PurchaseAddress.new
-    
-    
   end
 
   def create
@@ -25,24 +21,19 @@ class PurchaseHistoriesController < ApplicationController
     end
   end
 
-
- private
+  private
 
   def purchase_history_params
-    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :city, 
-      :house_number, :building_name, :phone_number).merge(user_id: current_user.id,item_id: params[:item_id], token: params[:token])
+    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :city,
+                                             :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def payjp_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,  # 商品の値段
-        card: purchase_history_params[:token],    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,  # 商品の値段
+      card: purchase_history_params[:token], # カードトークン
+      currency: 'jpy'                 # 通貨の種類（日本円）
+    )
   end
-
-  
-
-
 end
