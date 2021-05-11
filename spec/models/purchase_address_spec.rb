@@ -50,8 +50,8 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it 'phone_numberが10字以下だと保存できないこと' do
-        @purchase_address.phone_number = '1234567890'
+      it 'phone_numberが9字以下だと保存できないこと' do
+        @purchase_address.phone_number = '123456789'
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Phone number is invalid')
       end
