@@ -12,6 +12,11 @@ RSpec.describe PurchaseAddress, type: :model do
       it '全ての情報があれば保存できる' do
         expect(@purchase_address).to be_valid
       end
+
+      it '建物名がなくても保存できる' do
+        @purchase_address.building_name = ''
+        expect(@purchase_address).to be_valid
+      end
     end
     context '内容に問題がある場合' do
       it 'postal_codeが空だと保存できないこと' do
