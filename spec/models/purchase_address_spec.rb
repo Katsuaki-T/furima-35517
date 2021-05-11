@@ -17,6 +17,11 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.building_name = ''
         expect(@purchase_address).to be_valid
       end
+
+      it 'phone_numberが10文字でも保存できる事' do
+        @purchase_address.phone_number = '1234567890'
+        expect(@purchase_address).to be_valid
+      end
     end
     context '内容に問題がある場合' do
       it 'postal_codeが空だと保存できないこと' do
@@ -55,11 +60,6 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it 'phone_numberが9字以下だと保存できないこと' do
-        @purchase_address.phone_number = '123456789'
-        @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Phone number is invalid')
-      end
 
       it 'phone_numberが半角英字だと保存できないこと' do
         @purchase_address.phone_number = 'lllllllllll'
