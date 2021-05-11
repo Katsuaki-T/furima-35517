@@ -1,8 +1,8 @@
 class PurchaseHistoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
 
     redirect_to root_path if current_user == @item.user || !@item.purchase_history.nil?
     @purchase_address = PurchaseAddress.new
@@ -10,7 +10,6 @@ class PurchaseHistoriesController < ApplicationController
 
   def create
     @purchase_address = PurchaseAddress.new(purchase_history_params)
-    @item = Item.find(params[:item_id])
 
     if @purchase_address.valid?
       payjp_item
@@ -36,4 +35,9 @@ class PurchaseHistoriesController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+  
 end
