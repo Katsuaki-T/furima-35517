@@ -1,5 +1,6 @@
 function calc() {
-const itemPrice = document.getElementById("item-price")
+  if (document.getElementById("item-price")){
+  const itemPrice = document.getElementById("item-price")
 itemPrice.addEventListener("input",() => {
 const itemPriceValue = itemPrice.value
 const tax = 0.1
@@ -11,7 +12,7 @@ taxArea.innerHTML = taxFee
 profitArea.innerHTML = profit
 })
 }
-
+}
 
 
 
