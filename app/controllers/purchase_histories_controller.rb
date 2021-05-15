@@ -6,6 +6,7 @@ class PurchaseHistoriesController < ApplicationController
 
     redirect_to root_path if current_user == @item.user || @item.purchase_history != nil
     @purchase_address = PurchaseAddress.new
+    
   end
 
   def create
