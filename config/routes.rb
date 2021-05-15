@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
 resources :items do
   resources :purchase_histories ,only: [:index, :create]
+  resources :messages, only: [:create]
 end
 
-resources :messages, only: [:create]
+
 
 end
