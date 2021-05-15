@@ -3,10 +3,10 @@ class Item < ApplicationRecord
     validates :name
     validates :description
     validates :image
-    validates :price, format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9_999_999 }
+    validates :price, format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9_999_999 , message: "の値を確認してください"}
   end
 
-  with_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1, message: "を選択してください" } do
     validates :category_id
     validates :status_id
     validates :shipping_charge_id
