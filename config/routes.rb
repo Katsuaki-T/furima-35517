@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  
   get 'messages/new'
-  devise_for :users
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+
   root 'items#index'
 
 resources :items do
