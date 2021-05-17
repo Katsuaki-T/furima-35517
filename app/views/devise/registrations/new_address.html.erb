@@ -1,17 +1,28 @@
-<h2>住所情報登録</h2>
+<%= render "shared/second-header"%>
+
+<div class="address">
+ <div class="address_registration">
+<h2>住所情報登録</h2> <br>
 
 <%= form_for @address do |f| %>
 
 <%= render 'shared/error_messages', model: f.object %>
 
-<div class="field">
+
+ <div class="field">
     <%= f.label :address %><br />
     <%= f.text_field :address %>
   </div>
+</div>
 
+</div>
+<br>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
-<% end %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+<%# <%= render "devise/shared/links" %>
+
+
+<%= render "shared/second-footer"%>
