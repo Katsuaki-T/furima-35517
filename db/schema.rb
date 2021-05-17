@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_112340) do
+ActiveRecord::Schema.define(version: 2021_05_17_045956) do
 
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -95,6 +95,15 @@ ActiveRecord::Schema.define(version: 2021_05_16_112340) do
     t.index ["purchase_history_id"], name: "index_sending_addresses_on_purchase_history_id"
   end
 
+  create_table "sns_credentials", charset: "utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
@@ -121,4 +130,5 @@ ActiveRecord::Schema.define(version: 2021_05_16_112340) do
   add_foreign_key "purchase_histories", "items"
   add_foreign_key "purchase_histories", "users"
   add_foreign_key "sending_addresses", "purchase_histories"
+  add_foreign_key "sns_credentials", "users"
 end
