@@ -158,3 +158,21 @@
   text-align: right;
   cursor: pointer;
 }
+.address {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.address_registration{
+  text-align: center 
+}
+.confirm{
+  text-align: center 
+}
