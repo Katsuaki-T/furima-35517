@@ -14,3 +14,4 @@ ActiveStorage.start()
 
 require("../new");
 require("../card");
+require('../preview')
