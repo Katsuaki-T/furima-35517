@@ -8,5 +8,6 @@ document.addEventListener('DOMContentLoaded', function(){
     const imageElement = document.createElement('div');
     // 表示する画像を生成
     const blobImage = document.createElement('img');
+    blobImage.setAttribute('src', blob);
   });
 });
