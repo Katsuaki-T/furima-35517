@@ -6,10 +6,11 @@ document.addEventListener('DOMContentLoaded', function(){
 const createImageHTML = (blob) => {
 
   // 画像を表示するためのdiv要素を生成
- const imageElement = document.createElement('div');
+  const imageElement = document.createElement('div');
  // 表示する画像を生成
- const blobImage = document.createElement('img');
+ const blobImage = document.createElement('img')
  blobImage.setAttribute('src', blob);
+ blobImage.classList.add('image-size');
  // 生成したHTMLの要素をブラウザに表示させる
  imageElement.appendChild(blobImage);
  ImageList.appendChild(imageElement);

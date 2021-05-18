@@ -227,3 +227,15 @@
 .inc {
   font-size: 13px;
 }
+/* /プレビュー機能 */
+
+#image-list{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.image-size{
+  width: 400px;
+  height: 300px;
+}
