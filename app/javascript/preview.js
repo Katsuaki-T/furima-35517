@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
+  if ( document.getElementById('message_image')){
   const ImageList = document.getElementById('image-list');
   document.getElementById('item-image').addEventListener('change', function(e){
     const file = e.target.files[0];
@@ -14,4 +15,5 @@ document.addEventListener('DOMContentLoaded', function(){
     imageElement.appendChild(blobImage);
     ImageList.appendChild(imageElement);
   });
+ }
 });
