@@ -6,5 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // 画像を表示するためのdiv要素を生成
     const imageElement = document.createElement('div');
+    // 表示する画像を生成
+    const blobImage = document.createElement('img');
   });
 });
