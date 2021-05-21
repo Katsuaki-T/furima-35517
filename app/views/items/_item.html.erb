@@ -1,0 +1,24 @@
+<div class="content_post" style="background-image: url(<%= item.image %>);">
+    <div class="more">
+      <span><%= item_tag 'arrow_top.png' %></span>
+      <ul class="more_list">
+        <li>
+          <%= link_to '詳細', item_path(item.id), method: :get %>
+        </li>
+        <% if user_signed_in? && current_user.id == item.user_id %>
+        <li>
+          <%= link_to '編集', edit_item_path(item.id), method: :get %>
+        </li>
+        <li>
+          <%= link_to '削除', item_path(item.id), method: :delete %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <p><%= item.name %></p>
+    <span class="name">
+      <a href="/users/<%= item.user.id %>">
+        <span>投稿者</span><%= item.user.nickname %>
+      </a>
+    </span>
+</div>
