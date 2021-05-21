@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 resources :items do
   resources :purchase_histories ,only: [:index, :create]
   resources :messages, only: [:create]
+  collection do
+    get 'search'
+  end
 end
 
 
