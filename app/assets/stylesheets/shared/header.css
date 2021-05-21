@@ -21,7 +21,7 @@
 }
 
 .search-form {
-  width: 65vw;
+  /* width: 65vw; */
   height: 5vh;
   display: flex;
   margin-bottom: 5px;
