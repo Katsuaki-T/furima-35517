@@ -15,19 +15,19 @@ RSpec.describe Item, type: :model do
       it '画像がないと登録できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("出品画像を入力してください")
+        expect(@item.errors.full_messages).to include('出品画像を入力してください')
       end
 
       it '商品名がないと登録できない' do
         @item.name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品名を入力してください")
+        expect(@item.errors.full_messages).to include('商品名を入力してください')
       end
 
       it '商品の説明がないと登録できない' do
         @item.description = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品の説明を入力してください")
+        expect(@item.errors.full_messages).to include('商品の説明を入力してください')
       end
 
       it 'カテゴリーが最初の状態だと登録できない' do
@@ -63,7 +63,7 @@ RSpec.describe Item, type: :model do
       it '値段がないと登録できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("価格を入力してください")
+        expect(@item.errors.full_messages).to include('価格を入力してください')
       end
 
       it '値段が¥300~¥9,999,999の間のみ保存可能' do

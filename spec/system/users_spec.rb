@@ -1,23 +1,22 @@
 require 'rails_helper'
 
 def basic_pass(path)
-  username = ENV["BASIC_AUTH_USER"]
-  password = ENV["BASIC_AUTH_PASSWORD"]
+  username = ENV['BASIC_AUTH_USER']
+  password = ENV['BASIC_AUTH_PASSWORD']
   visit "http://#{username}:#{password}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}#{path}"
 end
 
-RSpec.describe "Users新規登録", type: :system do
-
+RSpec.describe 'Users新規登録', type: :system do
   before do
     @user = FactoryBot.build(:user)
     @address = FactoryBot.build(:address)
   end
 
-  context 'ユーザー新規登録ができるとき' do 
+  context 'ユーザー新規登録ができるとき' do
     it '正しい情報を入力すればユーザー新規登録ができてトップページに移動する' do
       # トップページに移動する
       basic_pass root_path
-      
+
       visit root_path
       # トップページにサインアップページへ遷移するボタンがあることを確認する
       expect(page).to have_content('新')
@@ -38,24 +37,23 @@ RSpec.describe "Users新規登録", type: :system do
       select 1, from: 'user[birthday(2i)]'
       select 1, from: 'user[birthday(3i)]'
       # 次のページへ遷移したことを確認する
-      click_on("Next")
+      click_on('Next')
       # address情報を入力する
       fill_in 'address[address]', with: @address.address
       # Sign upを押すとユーザーモデルのカウントが1上がることを確認する
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change {Address.count}.by(1)
+      end.to change { Address.count }.by(1)
       # トップページへ遷移したことを確認する
       expect(current_path).to eq addresses_path
       # トップページに移動する
       visit root_path
-      # トップページにユーザーの名前が表示されることを確認する 
+      # トップページにユーザーの名前が表示されることを確認する
       expect(page).to have_content(@user.nickname)
-      
-     end
-   end
+    end
+  end
 
-   context 'ユーザー新規登録ができないとき' do
+  context 'ユーザー新規登録ができないとき' do
     it '誤った情報ではユーザー新規登録ができずにトップページに戻ってくる' do
       # トップページに移動する
       visit root_path
@@ -64,11 +62,11 @@ RSpec.describe "Users新規登録", type: :system do
       # 新規登録ページへ移動する
       visit new_user_registration_path
       # 誤ったユーザー情報を入力する
-      fill_in "user[email]", with: 'test'
+      fill_in 'user[email]', with: 'test'
       # サインアップボタンを押してもユーザーモデルのカウントが上がらないことを確認する
-      expect{
+      expect  do
         find('input[name="commit"]').click
-      }.to change {User.count}.by(0)
+      end.to change { User.count }.by(0)
       # 新規登録ページへ戻ってくることを確認する
       expect(current_path).to eq(new_user_registration_path)
     end
@@ -76,7 +74,6 @@ RSpec.describe "Users新規登録", type: :system do
 end
 
 RSpec.describe 'ログイン', type: :system do
-
   before do
     @user = FactoryBot.create(:user)
   end
@@ -109,12 +106,11 @@ RSpec.describe 'ログイン', type: :system do
       # ログインページに遷移する
       visit new_user_session_path
       # 誤ったユーザー情報を入力する
-      fill_in "user[email]", with: 'test'
+      fill_in 'user[email]', with: 'test'
       # ログインボタンを押す
       find('input[name="commit"]').click
       # ログインページへ戻されることを確認する
       expect(current_path).to eq(new_user_session_path)
     end
   end
-
 end
