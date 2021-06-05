@@ -1,11 +1,14 @@
+<% if user_signed_in? %>
 <div class="comment-box">
   <%= form_with model: [@item,@message] do |f| %>
      <%= f.text_area :text %>
      
      
      <div id='messages'>
-  <% @item.messages.each do |message| %>
+  <% @item.messages.reverse_each do |message| %>
     <p><%= message.text %></p>
+     <p class="message_time"> <%= message.updated_at.strftime("%Y-%m-%d %H:%M:%S")  %></p>
+
   <% end %>
   </div>
       <p class="comment-warn">
@@ -13,7 +16,7 @@
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
-      <button type="submit" class="comment-btn">
+      <button type="submit" class="comment-btn" name="commit">
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <span>コメントする<span>
       </button>
@@ -31,3 +34,4 @@
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
   
 </div>
+<% end %>
