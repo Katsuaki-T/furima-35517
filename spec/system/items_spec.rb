@@ -12,6 +12,10 @@ RSpec.describe 'Items', type: :system do
     @item2 = FactoryBot.create(:item)
   end
 
+
+
+
+
   context 'item編集ができるとき' do
     it 'ログインしたユーザーは自分が投稿したitemの編集ができる' do
       # topic1を投稿したユーザーでログインする
@@ -27,10 +31,14 @@ RSpec.describe 'Items', type: :system do
       expect(page).to have_content('編集')
 
       # すでに投稿済みの内容がフォームに入っていることを確認する
-      expect(page).to have_content(@item1.category_id)
+      expect(
+        @item1.category_id
+      ).to eq 2
 
       # 投稿内容を編集する
-
+    #  select 3,from: "item[category_id]"
+      
+      
       # 編集してもTweetモデルのカウントは変わらないことを確認する
       # 編集完了画面に遷移したことを確認する
       # 「更新が完了しました」の文字があることを確認する

@@ -7,7 +7,7 @@
      <div id='messages'>
   <% @item.messages.reverse_each do |message| %>
     <p><%= message.text %></p>
-     <p class="message_time"> <%= message.updated_at.strftime("%Y-%m-%d %H:%M:%S")  %></p>
+    
 
   <% end %>
   </div>
